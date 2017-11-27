@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ceph-keyring
+  namespace: openstack
+  
+data:
+  config: |
+    [mon.]
+    key = {{rook_mon_key}} 
+    caps mon = "allow *"
+    [client.admin]
+    key = {{rook_admin_key}} 
+    auid = 0
+    caps mds = "allow"
+    caps mon = "allow *"
+    caps osd = "allow *"
+    caps mgr = "allow *"

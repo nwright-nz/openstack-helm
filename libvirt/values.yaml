@@ -31,7 +31,7 @@ images:
   pull_policy: "IfNotPresent"
 
 ceph:
-  enabled: true
+  enabled: false 
   monitors: []
   cinder_user: "admin"
   cinder_keyring: null

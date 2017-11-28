@@ -149,6 +149,16 @@ spec:
           configMap:
             name: glance-etc
             defaultMode: 0444
+{{- if eq .Values.storage "rook" }}
+        - name: glance-images
+          flexVolume:
+            driver: rook.io/rook
+            fsType: ceph
+            options:
+              fsName: glance # name of the filesystem specified in the filesystem CRD.
+              clusterName: rook
+        {{ end }}
+
 {{- if eq .Values.storage "pvc" }}
         - name: glance-images
           persistentVolumeClaim:

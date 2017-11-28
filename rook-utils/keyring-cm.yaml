@@ -1,0 +1,19 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ceph-keyring
+  namespace: openstack
+  
+data:
+  config: |
+    [mon.]
+    key = AQAJyRxa9HpqORAAfMHbP49MP4pdW05r2cU0jQ== 
+    caps mon = "allow *"
+    [client.admin]
+    key = AQAJyRxaAmhlOxAARY4nhp5UMoHvtGXgFpQBeA== 
+    auid = 0
+    caps mds = "allow"
+    caps mon = "allow *"
+    caps osd = "allow *"
+    caps mgr = "allow *"

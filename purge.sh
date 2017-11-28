@@ -13,7 +13,5 @@ helm delete --purge glance
 helm delete --purge cinder
 helm delete --purge openvswitch
 helm delete --purge rabbitmq
-helm delete mariadb --purge
-helm delete mariadb --purge
 helm delete ceph --purge
-helm delete mariadb --purge
+

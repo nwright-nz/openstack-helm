@@ -102,7 +102,7 @@ spec:
               subPath: key
               readOnly: true
             {{ end }}
-            {{- if eq .Values.storage "pvc" }}
+            {{- if or (eq .Values.storage "pvc") (eq .Values.storage "rook") }}
             - name: glance-images
               mountPath: {{ .Values.conf.glance.glance_store.filesystem_store_datadir }}
             {{ end }}
@@ -121,6 +121,15 @@ spec:
         - name: ceph-keyring
           secret:
             secretName: pvc-ceph-client-key
+        {{ end }}
+        {{- if eq .Values.storage "rook" }}
+        - name: glance-images
+          flexVolume:
+            driver: rook.io/rook
+            fsType: ceph
+            options:
+              fsName: glance # name of the filesystem specified in the filesystem CRD.
+              clusterName: rook
         {{ end }}
         {{- if eq .Values.storage "pvc" }}
         - name: glance-images

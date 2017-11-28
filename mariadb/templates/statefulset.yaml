@@ -126,6 +126,7 @@ spec:
   volumeClaimTemplates:
   - metadata:
       name: mysql-data
+      
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
